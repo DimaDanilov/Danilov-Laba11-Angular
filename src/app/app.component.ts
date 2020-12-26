@@ -13,7 +13,6 @@ export class AppComponent {
   dets = [];
   dets_amount=10;
 
-  id:number;
 
   constructor(){
     
@@ -37,14 +36,29 @@ export class AppComponent {
     mas.splice(mas.indexOf(element), 1);
   }
 
-  addCard(mas,element,status){
-    let new_elem = mas.push(new MyDet());
-    console.log(new_elem);
-    mas[new_elem-1].id=element;
-    mas[new_elem-1].name='Датчик №'+(element);
-    mas[new_elem-1].status=status;
-    console.log(mas);
-    return false;
+  addCard(e: any): boolean {
+    const data: any = new FormData(e.target);
+    const card: MyDet = {
+      id: Number(data.get('id')),
+      name: 'Датчик №'+ data.get('id'),
+      status: data.get('status')
+    };
+    if (data.get('status')=='off')
+      card.status = false;
+    else if (data.get('status')=='on')
+      card.status = true;
+
+    // Вариант 1
+      
+    this.dets[this.dets.length]=new MyDet();
+    this.dets[this.dets.length-1].id=card.id;
+    this.dets[this.dets.length-1].name=card.name;
+    this.dets[this.dets.length-1].status=card.status;
     
+    // Вариант 2
+    
+    // this.dets.push(card);
+
+    return false;
   }
 }

@@ -16,17 +16,17 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form >
+            <form (submit) = "addCard($event)">
 
-                <div class="form-group" (submit)="addCard(dets,232123,true)">
-                    <label name="id_input" class="form-check-label" for="id_input">Введите ID: </label>
-                    <input type="number" class="form-control" id="id_input" value={{dets_amount+1}} min="0">
+                <div class="form-group">
+                    <label class="form-check-label" for="id">Введите ID: </label>
+                    <input type="number" class="form-control" id="id" name="id" value={{dets_amount+1}} min="0">
                 </div>
 
                 <div class="form-group">
-                    <input type="radio" id="on" name="status_input" value="on" checked> 
+                    <input type="radio" id="on" name="status" value="on" checked> 
                     <label for="on">Включен</label><br>
-                    <input type="radio" id="off" name="status_input" value="off">
+                    <input type="radio" id="off" name="status" value="off">
                     <label for="off">Выключен</label><br>
                 </div>
 
